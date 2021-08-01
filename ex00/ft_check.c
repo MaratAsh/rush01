@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/01 17:30:14 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 20:53:46 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:04:29 by tandrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_left(int *arr, int num)
 	return (count);
 }
 
-int ft_check_right(int *arr, int num)
+int	ft_check_right(int *arr, int num)
 {
 	int	i;
 	int	j;
@@ -65,7 +65,7 @@ int	ft_check_up(int **matrix, int j, int num)
 	int	i1;
 	int	i2;
 	int	count;
-	
+
 	i1 = 1;
 	count = 1;
 	while (i1 <= num)
@@ -91,7 +91,6 @@ int	ft_check_down(int **matrix, int j, int num)
 	int	count;
 
 	count = 1;
-
 	i1 = num;
 	while (i1 > 0)
 	{
