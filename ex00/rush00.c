@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 19:50:15 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 20:46:38 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 void	ft_print_matrix(int **arr, int rows, int columns, int start_r, int start_c);
 int	ft_check_left(int *arr, int num);
 int	ft_check_right(int *arr, int num);
+int	ft_check_up(int **m, int j, int num);
+int	ft_check_down(int **m, int j, int num);
 
 int	*g_params;
 int	**g_matrix;
@@ -49,9 +51,16 @@ int	ft_check()
 			return (0);
 		i++;
 	}
+	
 	j = 1;
 	while (j < 5)
 	{
+		printf("i%d %d \n", j, g_matrix[0][j]);
+		if ( ft_check_up(g_matrix, j, 4) != *(*g_matrix + j))
+			return (0);
+		if ( ft_check_down(g_matrix, j, 4) != *(*(g_matrix + 5) + j))
+			return (0);
+		
 		j++;
 	}
 	return (1);
