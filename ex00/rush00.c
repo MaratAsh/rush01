@@ -6,17 +6,56 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 17:46:53 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 19:50:15 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_print_matrix(int **arr, int rows, int columns, int start_r, int start_c);
+int	ft_check_left(int *arr, int num);
+int	ft_check_right(int *arr, int num);
 
 int	*g_params;
 int	**g_matrix;
+
+int	ft_check()
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < 5)
+	{
+		j = 1;
+		while (j < 5)
+		{
+			if (g_matrix[i][j] == 0)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	
+	i = 1;
+	while (i < 5)
+	{
+		//printf("i%d %d \n", i, *(*(g_matrix + i) + 1));
+		if (ft_check_left(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i)))
+			return (0);
+		if (ft_check_right(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i) + 5))
+			return (0);
+		i++;
+	}
+	j = 1;
+	while (j < 5)
+	{
+		j++;
+	}
+	return (1);
+}
 
 int	ft_is_able_num(int num, int i, int j)
 {
@@ -41,10 +80,6 @@ int	ft_is_able_num(int num, int i, int j)
 	}
 	return (1);
 }
-int	ft_is_right()
-{
-	
-}
 
 void	rush_req()
 {
@@ -66,9 +101,19 @@ void	rush_req()
 					if (ft_is_able_num(num, i, j))
 					{
 						g_matrix[i][j] = num;
+						if (i == 4 && j == 4)
+						{
+							if (ft_check() > 0)
+							{
+								ft_print_matrix(g_matrix, 5, 5, 1, 1);
+								write(1, "--------------\n", 15);
+								return ;
+							}
+							
+						}
 						rush_req();
-						ft_print_matrix(g_matrix, 5, 5, 1, 1);
-						write(1, "--------------\n", 15);
+						//ft_print_matrix(g_matrix, 5, 5, 1, 1);
+						//write(1, "--------------\n", 15);
 						g_matrix[i][j] = 0;
 					}
 					num++;
@@ -125,8 +170,9 @@ void	rush(int *params)
 	g_params = params;
 	write(1, "-------------\n", 14);
 	ft_set_params();
+	rush_req();
 	ft_print_matrix(g_matrix, 6, 6, 0, 0);
 	write(1, "-------------\n", 14);
-	rush_req();
+	//rush_req();
 	ft_print_matrix(g_matrix, 5, 5, 1, 1);
 }
