@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:14:31 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:16:28 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	rush_req(void)
 						{
 							if (ft_check() > 0)
 							{
-								ft_print_matrix(g_matrix, 5, 5, 1, 1);
+								ft_print_matrix(g_matrix, 5, 5);
 								return ;
 							}
 						}
