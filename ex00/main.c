@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:16:06 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:49:33 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:55:47 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 		return (0);
 	params = ft_params_converter(*argv);
-	rush(params);
+	if (params == NULL)
+		return (0);
+	if (rush(params) == 0)
+		write(1, "Error\n", 6);
 }
