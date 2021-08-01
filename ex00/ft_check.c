@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_params_converter.c                              :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/01 10:27:06 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 13:24:41 by alcierra         ###   ########.fr       */
+/*   Created: 2021/08/01 17:30:14 by alcierra          #+#    #+#             */
+/*   Updated: 2021/08/01 17:46:50 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	*ft_params_converter(char *str)
+int	ft_check_left(int *arr, int num)
 {
-	int	*arr;
 	int	i;
+	int	j;
+	int	count;
 
-	arr = (int *) malloc(sizeof(int) * 16);
-	if (arr != NULL)
+	count = 1;
+	i = 0;
+	while (i < num)
 	{
-		i = 0;
-		while (i < 16)
+		j = 0;
+		while (j < i)
 		{
-			if (str[i * 2] >= '0' && str[i * 2] <= '4')
-			{
-				arr[i] = str[i * 2] - '0';
-			}
-			else
-			{
-				free(arr);
-				return (NULL);
-			}
-			i++;
+			if (arr[i] < arr[j])
+				break ;
+			if (j == i - 1)
+				count++;
+			j++;
 		}
+		i++;
 	}
-	return (arr);
+	return (count);
 }
