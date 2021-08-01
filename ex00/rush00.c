@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:46:14 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:49:05 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	rush_req(void);
 
 int	*g_params;
 int	**g_matrix;
+int	g_is_printed;
 
 int	ft_is_able_num(int num, int i, int j)
 {
@@ -57,6 +58,7 @@ int	ft_in_while(int num, int i, int j)
 		{
 			if (ft_check(g_matrix) > 0)
 			{
+				g_is_printed = 1;
 				ft_print_matrix(g_matrix, 5, 5);
 				return (0);
 			}
@@ -119,11 +121,12 @@ void	ft_set_params(void)
 	}
 }
 
-void	rush(int *params)
+int	rush(int *params)
 {
 	int	i;
 	int	j;
 
+	g_is_printed = 0;
 	i = 0;
 	g_matrix = malloc(6 * sizeof(int *));
 	while (i < 6)
@@ -140,4 +143,5 @@ void	rush(int *params)
 	g_params = params;
 	ft_set_params();
 	rush_req();
+	return (g_is_printed);
 }
