@@ -6,24 +6,23 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 20:46:38 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:14:31 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
-void	ft_print_matrix(int **arr, int rows, int columns, int start_r, int start_c);
-int	ft_check_left(int *arr, int num);
-int	ft_check_right(int *arr, int num);
-int	ft_check_up(int **m, int j, int num);
-int	ft_check_down(int **m, int j, int num);
+void	ft_print_matrix(int **arr, int rows, int columns);
+int		ft_check_left(int *arr, int num);
+int		ft_check_right(int *arr, int num);
+int		ft_check_up(int **m, int j, int num);
+int		ft_check_down(int **m, int j, int num);
 
 int	*g_params;
 int	**g_matrix;
 
-int	ft_check()
+int	ft_check(void)
 {
 	int	i;
 	int	j;
@@ -40,27 +39,22 @@ int	ft_check()
 		}
 		i++;
 	}
-	
 	i = 1;
 	while (i < 5)
 	{
-		//printf("i%d %d \n", i, *(*(g_matrix + i) + 1));
 		if (ft_check_left(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i)))
 			return (0);
 		if (ft_check_right(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i) + 5))
 			return (0);
 		i++;
 	}
-	
 	j = 1;
 	while (j < 5)
 	{
-		printf("i%d %d \n", j, g_matrix[0][j]);
-		if ( ft_check_up(g_matrix, j, 4) != *(*g_matrix + j))
+		if (ft_check_up(g_matrix, j, 4) != *(*g_matrix + j))
 			return (0);
-		if ( ft_check_down(g_matrix, j, 4) != *(*(g_matrix + 5) + j))
+		if (ft_check_down(g_matrix, j, 4) != *(*(g_matrix + 5) + j))
 			return (0);
-		
 		j++;
 	}
 	return (1);
@@ -90,7 +84,7 @@ int	ft_is_able_num(int num, int i, int j)
 	return (1);
 }
 
-void	rush_req()
+void	rush_req(void)
 {
 	int	i;
 	int	j;
@@ -115,14 +109,10 @@ void	rush_req()
 							if (ft_check() > 0)
 							{
 								ft_print_matrix(g_matrix, 5, 5, 1, 1);
-								write(1, "--------------\n", 15);
 								return ;
 							}
-							
 						}
 						rush_req();
-						//ft_print_matrix(g_matrix, 5, 5, 1, 1);
-						//write(1, "--------------\n", 15);
 						g_matrix[i][j] = 0;
 					}
 					num++;
@@ -135,7 +125,7 @@ void	rush_req()
 	}
 }
 
-void	ft_set_params()
+void	ft_set_params(void)
 {
 	int	i;
 	int	div;
@@ -177,11 +167,6 @@ void	rush(int *params)
 		i++;
 	}
 	g_params = params;
-	write(1, "-------------\n", 14);
 	ft_set_params();
 	rush_req();
-	ft_print_matrix(g_matrix, 6, 6, 0, 0);
-	write(1, "-------------\n", 14);
-	//rush_req();
-	ft_print_matrix(g_matrix, 5, 5, 1, 1);
 }
