@@ -6,18 +6,22 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:24:25 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 15:09:02 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:12:29 by tandrea          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_matrix(int **matrix, int rows, int columns, int start_r, int start_c)
+void	ft_print_matrix(int **matrix, int rows, int columns)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	c;
+	int		start_r;
+	int		start_c;
 
+	start_r = 1;
+	start_c = 1;
 	i = start_r;
 	while (i < rows)
 	{
