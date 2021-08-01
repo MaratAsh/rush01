@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:20:23 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:26:42 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ int		ft_check_right(int *arr, int num);
 int		ft_check_up(int **m, int j, int num);
 int		ft_check_down(int **m, int j, int num);
 int		ft_check(int **matrix);
+void	rush_req(void);
 
 int	*g_params;
 int	**g_matrix;
-
-
 
 int	ft_is_able_num(int num, int i, int j)
 {
@@ -49,6 +48,24 @@ int	ft_is_able_num(int num, int i, int j)
 	return (1);
 }
 
+void	ft_in_while(int num, int i, int j)
+{
+	if (ft_is_able_num(num, i, j))
+	{
+		g_matrix[i][j] = num;
+		if (i == 4 && j == 4)
+		{
+			if (ft_check(g_matrix) > 0)
+			{
+				ft_print_matrix(g_matrix, 5, 5);
+				return ;
+			}
+		}
+		rush_req();
+		g_matrix[i][j] = 0;
+	}
+}
+
 void	rush_req(void)
 {
 	int	i;
@@ -66,20 +83,7 @@ void	rush_req(void)
 				num = 1;
 				while (num <= 4)
 				{
-					if (ft_is_able_num(num, i, j))
-					{
-						g_matrix[i][j] = num;
-						if (i == 4 && j == 4)
-						{
-							if (ft_check(g_matrix) > 0)
-							{
-								ft_print_matrix(g_matrix, 5, 5);
-								return ;
-							}
-						}
-						rush_req();
-						g_matrix[i][j] = 0;
-					}
+					ft_in_while(num, i, j);
 					num++;
 				}
 				return ;
