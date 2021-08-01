@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:16:28 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:20:23 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,47 +18,12 @@ int		ft_check_left(int *arr, int num);
 int		ft_check_right(int *arr, int num);
 int		ft_check_up(int **m, int j, int num);
 int		ft_check_down(int **m, int j, int num);
+int		ft_check(int **matrix);
 
 int	*g_params;
 int	**g_matrix;
 
-int	ft_check(void)
-{
-	int	i;
-	int	j;
 
-	i = 1;
-	while (i < 5)
-	{
-		j = 1;
-		while (j < 5)
-		{
-			if (g_matrix[i][j] == 0)
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	i = 1;
-	while (i < 5)
-	{
-		if (ft_check_left(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i)))
-			return (0);
-		if (ft_check_right(*(g_matrix + i) + 1, 4) != *(*(g_matrix + i) + 5))
-			return (0);
-		i++;
-	}
-	j = 1;
-	while (j < 5)
-	{
-		if (ft_check_up(g_matrix, j, 4) != *(*g_matrix + j))
-			return (0);
-		if (ft_check_down(g_matrix, j, 4) != *(*(g_matrix + 5) + j))
-			return (0);
-		j++;
-	}
-	return (1);
-}
 
 int	ft_is_able_num(int num, int i, int j)
 {
@@ -106,7 +71,7 @@ void	rush_req(void)
 						g_matrix[i][j] = num;
 						if (i == 4 && j == 4)
 						{
-							if (ft_check() > 0)
+							if (ft_check(g_matrix) > 0)
 							{
 								ft_print_matrix(g_matrix, 5, 5);
 								return ;
