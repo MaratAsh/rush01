@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:28:06 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/01 21:46:14 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_is_able_num(int num, int i, int j)
 	return (1);
 }
 
-void	ft_in_while(int num, int i, int j)
+int	ft_in_while(int num, int i, int j)
 {
 	if (ft_is_able_num(num, i, j))
 	{
@@ -58,12 +58,13 @@ void	ft_in_while(int num, int i, int j)
 			if (ft_check(g_matrix) > 0)
 			{
 				ft_print_matrix(g_matrix, 5, 5);
-				return ;
+				return (0);
 			}
 		}
 		rush_req();
 		g_matrix[i][j] = 0;
 	}
+	return (1);
 }
 
 void	rush_req(void)
@@ -83,7 +84,8 @@ void	rush_req(void)
 				num = 1;
 				while (num <= 4)
 				{
-					ft_in_while(num, i, j);
+					if (ft_in_while(num, i, j) == 0)
+						return ;
 					num++;
 				}
 				return ;
