@@ -6,7 +6,7 @@
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/31 22:17:35 by alcierra          #+#    #+#             */
-/*   Updated: 2021/08/01 21:49:05 by alcierra         ###   ########.fr       */
+/*   Updated: 2021/08/03 15:39:50 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ int	rush(int *params)
 	g_is_printed = 0;
 	i = 0;
 	g_matrix = malloc(6 * sizeof(int *));
+	if (g_matrix == NULL)
+		return (g_is_printed);
 	while (i < 6)
 	{
 		g_matrix[i] = malloc(6 * sizeof(int));
@@ -143,5 +145,6 @@ int	rush(int *params)
 	g_params = params;
 	ft_set_params();
 	rush_req();
+	free(g_matrix);
 	return (g_is_printed);
 }
